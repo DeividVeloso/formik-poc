@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, Form } from 'formik';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = theme => ({
   container: {
@@ -22,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-class FormTest extends React.Component {
+class FormTwo extends React.Component {
   render() {
     const {
       values,
@@ -36,17 +37,17 @@ class FormTest extends React.Component {
       handleSubmit,
       classes
     } = this.props;
-    console.log("PROPS",this.props.errors)
+
     return (
       <Form className={classes.container}>
         <div className={classes.children}>
           <Field
-            id="email"
+            id="slug"
             component={TextField}
-            name="email"
-            label="E-mail"
-            placeholder="Enter your email"
-            value={values.email}
+            name="slug"
+            label="Slug Gerado"
+            //placeholder="Enter your slug"
+            value={values.slug}
             onChange={handleChange}
             onBlur={handleBlur}
             style={{
@@ -54,17 +55,15 @@ class FormTest extends React.Component {
             }}
           />
         </div>
-        {errors.email &&
-          touched.email && <div className="input-feedback">{errors.email}</div>}
+        {errors.slug &&
+          touched.slug && <div className="input-feedback">{errors.slug}</div>}
 
         <div className={classes.children}>
           <Field
-            component={TextField}
-            id="name"
-            placeholder="Enter your name"
-            label="Nome"
-            type="text"
-            value={values.name}
+            component={Checkbox}
+            id="accept"
+            checked={values.accept}
+            value={values.accept}
             onChange={handleChange}
             onBlur={handleBlur}
             style={{
@@ -72,17 +71,17 @@ class FormTest extends React.Component {
             }}
           />
         </div>
-        {errors.name &&
-          touched.name && <div className="input-feedback">{errors.name}</div>}
+        {errors.accept &&
+          touched.accept && <div className="input-feedback">{errors.accept}</div>}
         <button
           className={classes.button}
           type="submit"
           disabled={!isValid || isSubmitting}
         >
-          Next
+          Finish
         </button>
       </Form>
     );
   }
 }
-export default withStyles(styles)(FormTest);
+export default withStyles(styles)(FormTwo);
